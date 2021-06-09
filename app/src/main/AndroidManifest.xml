@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CRUD_API">
+        <activity android:name=".UpdateStudent"></activity>
+        <activity
+            android:name=".ActivityUpdateStudent"
+            android:label="@string/title_activity_update_student"
+            android:theme="@style/Theme.CRUD_API.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

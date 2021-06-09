@@ -1,16 +1,19 @@
 package com.example.crud_api;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -18,7 +21,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.RecycleViewHolder> {
 
@@ -58,6 +63,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.RecycleVie
 
         private CustomAdapter adapter;
         TextView tvName;
+        EditText edtName;
         Button btnEdit,btnDelete;
         public RecycleViewHolder(@NonNull View itemView, CustomAdapter customAdapter) {
             super(itemView);
@@ -67,6 +73,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.RecycleVie
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
             this.adapter =customAdapter;
+
+            btnEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getLayoutPosition();
+                    Student student =linkedList.get(position);
+                    Intent i = new Intent(context,UpdateStudent.class);
+                    i.putExtra("id",student.getId());
+                    context.startActivity(i);
+                }
+            });
 
 
             btnDelete.setOnClickListener(new View.OnClickListener() {
